@@ -7,7 +7,6 @@ const { NotImplementedError } = require("../extensions/index.js");
  * using Node from extensions
  */
 
-
 class Node {
   constructor(data) {
     this.data = data;
@@ -45,7 +44,6 @@ class BinarySearchTree {
       }
 
       return node;
-
     }
   }
 
@@ -61,7 +59,9 @@ class BinarySearchTree {
         return true;
       }
 
-      return data < node.data ? searchWithin(node.left, data) : searchWithin(node.right, data);
+      return data < node.data
+        ? searchWithin(node.left, data)
+        : searchWithin(node.right, data);
     }
   }
 
@@ -108,27 +108,37 @@ class BinarySearchTree {
         node.right = removeNode(node.right, minOfRight.data);
 
         return node;
-
       }
-
     }
-
   }
 
   min() {
-    throw new NotImplementedError("Not implemented");
-    // remove line with error and write your code here
+    if (!this.rootTree) {
+      return;
+    }
+
+    let node = this.rootTree;
+    while (node.left) {
+      node = node.left;
+    }
+
+    return node.data;
   }
 
   max() {
-    throw new NotImplementedError("Not implemented");
-    // remove line with error and write your code here
+    if (!this.rootTree) {
+      return;
+    }
+
+    let node = this.rootTree;
+    while (node.right) {
+      node = node.right;
+    }
+    return node.data;
   }
 }
 
 // const bst = new BinarySearchTree();
-
-
 
 module.exports = {
   BinarySearchTree,
